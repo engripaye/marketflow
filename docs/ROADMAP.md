@@ -4,7 +4,7 @@ The roadmap is structured as a phased evolution from a secure business-managemen
 
 ## Month 1 — Platform Foundation
 
-Establish the core platform with authentication, multi-tenancy, product catalogue, inventory management, customer management, dashboard capabilities, API documentation, containerization, and CI.
+Establish the core platform with authentication, integrity, multi-tenancy, product catalogue, inventory management, customer management, dashboard capabilities, API documentation, containerization, and CI.
 
 ## Month 2 — Sales & Credit Management
 
