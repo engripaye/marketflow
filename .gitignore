@@ -1,0 +1,35 @@
+# IDE
+.idea/
+.vscode/
+
+# macOS
+.DS_Store
+
+# Java / Maven
+target/
+*.class
+
+# Node
+node_modules/
+dist/
+build/
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Logs
+*.log
+
+# Docker
+docker-data/
+
+# OS
+Thumbs.db
