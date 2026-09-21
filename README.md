@@ -658,7 +658,7 @@ Issues, pull requests, architectural decisions, and documentation should provide
 
 # Repository Structure
 
-```text
+```text 1
 marketflow/
 │
 ├── backend/
