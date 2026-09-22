@@ -1,10 +1,15 @@
 package dev.engripaye.backend.business;
 
 import jakarta.persistence.*;
+import lombok.AccessLevel;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "business")
-public class Business {
+@Table(name = "businesses")
+@Getter
+@NoArgsConstructor(access = AccessLevel.PROTECTED)
+public class Business extends BaseEntity {
 
     @Column(nullable=false)
     private String name;
@@ -19,18 +24,10 @@ public class Business {
     @JoinColumn(name="owner_id", nullable=false)
     private AppUser owner;
 
-    protected Business(){}
-
-    public Business(String name, String slug, AppUser owner)
-    {this.name=name;this.slug=slug;this.owner=owner;}
-
-    public String getName()
-    {return name;}
-
-    public String getSlug()
-    {return slug;}
-
-    public String getCurrency()
-    {return currency;}
+    public Business(String name, String slug, AppUser owner) {
+        this.name = name;
+        this.slug = slug;
+        this.owner = owner;
+    }
 
 }
