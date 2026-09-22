@@ -22,10 +22,16 @@ public class Membership {
 
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
-    private Business Role;
+    private Business role;
 
     @Column(nullable = false, updatable = false)
     private Instant createdAt = Instant.now();
+
+    public Membership(Business business, AppUser user, Business role){
+        this.business = business;
+        this.user = user;
+        this.role = role;
+    }
 
 
 
