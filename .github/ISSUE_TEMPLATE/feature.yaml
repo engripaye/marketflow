@@ -1,0 +1,14 @@
+name: Feature request
+description: Propose a focused MarketFlow improvement
+labels: [enhancement]
+body:
+  - type: textarea
+    attributes:
+      label: Problem
+      description: What user problem does this solve?
+    validations: { required: true }
+  - type: textarea
+    attributes:
+      label: Acceptance criteria
+      description: List observable outcomes and test cases.
+    validations: { required: true }
