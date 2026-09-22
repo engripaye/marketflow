@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+
+import java.time.Instant;
 import java.util.UUID;
 
 @Getter
@@ -21,6 +23,11 @@ public class Membership {
     @Enumerated(EnumType.STRING)
     @Column(nullable = false)
     private Business Role;
+
+    @Column(nullable = false, updatable = false)
+    private Instant createdAt = Instant.now();
+
+
 
 
 }
