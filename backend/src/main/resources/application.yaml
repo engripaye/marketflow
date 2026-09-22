@@ -1,3 +1,28 @@
 spring:
   application:
-    name: backend
+    name: marketflow-api
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5433/marketflow}
+    username: ${SPRING_DATASOURCE_USERNAME:marketflow}
+    password: ${SPRING_DATASOURCE_PASSWORD:marketflow_local_password}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate
+  flyway:
+    enabled: true
+server:
+  error:
+    include-message: never
+app:
+  jwt:
+    secret: ${APP_JWT_SECRET:replace-with-a-minimum-32-character-development-secret}
+    access-token-minutes: 60
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
