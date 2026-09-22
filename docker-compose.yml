@@ -1,0 +1,35 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-marketflow}
+      POSTGRES_USER: ${POSTGRES_USER:-marketflow}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-marketflow_local_password}
+    ports: ["5433:5432"]
+    volumes: [postgres_data:/var/lib/postgresql/data]
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $$POSTGRES_USER -d $$POSTGRES_DB"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+  redis:
+    image: redis:7-alpine
+    ports: ["6379:6379"]
+  api:
+    build: ./backend
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-marketflow}
+      SPRING_DATASOURCE_USERNAME: ${POSTGRES_USER:-marketflow}
+      SPRING_DATASOURCE_PASSWORD: ${POSTGRES_PASSWORD:-marketflow_local_password}
+      APP_JWT_SECRET: ${JWT_SECRET:-replace-with-a-minimum-32-character-development-secret}
+    ports: ["8080:8080"]
+    depends_on:
+      postgres: { condition: service_healthy }
+  web:
+    build: ./frontend
+    ports: ["5173:80"]
+    depends_on: [api]
+volumes:
+  postgres_data:
+
+  
