@@ -18,7 +18,9 @@ public class Membership {
     @JoinColumn(name = "business_id", nullable = false)
     private Business business;
 
-
+    @Enumerated(EnumType.STRING)
+    @Column(nullable = false)
+    private Business Role;
 
 
 }
