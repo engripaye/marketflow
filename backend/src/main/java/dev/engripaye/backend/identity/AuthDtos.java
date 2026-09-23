@@ -19,4 +19,5 @@ public final class AuthDtos {
             String businessName){}
 
 
+
 }
