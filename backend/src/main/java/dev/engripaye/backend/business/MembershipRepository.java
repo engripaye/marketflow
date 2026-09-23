@@ -5,6 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.Optional;
 import java.util.UUID;
 
-public interface MemberRepository extends JpaRepository<Membership, UUID> {
+public interface MembershipRepository extends JpaRepository<Membership, UUID> {
     Optional<Membership> findFirstByUser(AppUser user);
 }
