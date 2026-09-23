@@ -39,6 +39,7 @@ public class AuthService {
     public AuthDtos.AuthResponse login(AuthDtos.LoginRequest loginRequest){
         AppUser appUser = appUserRepository.findByEmailIgnoreCase(loginRequest.email().trim()).orElseThrow(() -> new ConflictException("Invalid email or password"));
 
+        if(!passwordEncoder.matches(loginRequest.password(), appUser.getPasswordHash())) throw new ConflictException("Invalid email or password");
 
     }
 
