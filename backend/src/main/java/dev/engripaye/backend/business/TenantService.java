@@ -21,7 +21,8 @@ public class TenantService {
         return membership.findFirstByUser(currentUser()).orElseThrow(() -> new NotFoundException("No business membership found "));
     }
 
-
-
+    public Business currentBusiness(){
+        return currentMembership().getBusiness();
+    }
 
 }
