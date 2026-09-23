@@ -27,6 +27,11 @@ public class AuthService {
 
         if (appUserRepository.existsByEmailIgnoreCase(email)) throw new ConflictException("An account already exists for this email");
 
+        AppUser appUser = appUserRepository.save(new AppUser(email,passwordEncoder.encode(registerRequest.password()), registerRequest.fullName().trim()));
+
+        String slug = uniqueSlug(registerRequest.businessName());
+
+
     }
 
 }
