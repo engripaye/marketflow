@@ -25,5 +25,9 @@ public class AppUser {
     @Enumerated(EnumType.STRING)
     private PlatformRole platformRole = PlatformRole.USER;
 
-
+    public AppUser(String email, String passwordHash, String fullName) {
+        this.email = email;
+        this.passwordHash = passwordHash;
+        this.fullName = fullName;
+    }
 }
