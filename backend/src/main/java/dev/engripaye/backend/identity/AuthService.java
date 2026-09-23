@@ -1,12 +1,10 @@
 package dev.engripaye.backend.identity;
 
 import dev.engripaye.backend.business.*;
-import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.web.bind.annotation.RequestBody;
 
 import java.util.Locale;
 
@@ -30,11 +28,11 @@ public class AuthService {
 
         String slug = uniqueSlug(registerRequest.businessName());
 
-        Business business = businessRepository.save(new Business(registerRequest.businessName().trim(), slug, user));
+        Business business = businessRepository.save(new Business(registerRequest.businessName().trim(), slug, appUser));
 
-        membershipRepository.save(new Membership(business, user, BusinessRole.OWNER));
+        membershipRepository.save(new Membership(business, appUser, BusinessRole.OWNER));
 
-        return response(user, business);
+        return response(appUser, business);
 
 
     }

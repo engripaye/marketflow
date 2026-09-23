@@ -10,7 +10,7 @@ import lombok.Setter;
 @Entity
 @NoArgsConstructor( access = AccessLevel.PROTECTED)
 @Table(name = "app_users")
-public class AppUser {
+public class AppUser extends BaseEntity {
 
     @Column(nullable = false, unique = true)
     private String email;
