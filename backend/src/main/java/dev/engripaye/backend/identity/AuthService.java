@@ -1,7 +1,6 @@
 package dev.engripaye.backend.identity;
 
-import dev.engripaye.backend.business.BusinessRepository;
-import dev.engripaye.backend.business.MembershipRepository;
+import dev.engripaye.backend.business.*;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -30,6 +29,12 @@ public class AuthService {
         AppUser appUser = appUserRepository.save(new AppUser(email,passwordEncoder.encode(registerRequest.password()), registerRequest.fullName().trim()));
 
         String slug = uniqueSlug(registerRequest.businessName());
+
+        Business business = businessRepository.save(new Business(registerRequest.businessName().trim(), slug, user));
+
+        membershipRepository.save(new Membership(business, user, BusinessRole.OWNER));
+
+        return response(user, business);
 
 
     }
