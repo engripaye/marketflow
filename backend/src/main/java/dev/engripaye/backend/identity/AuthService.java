@@ -34,6 +34,11 @@ public class AuthService {
 
         return response(appUser, business);
 
+    }
+
+    public AuthDtos.AuthResponse login(AuthDtos.LoginRequest loginRequest){
+        AppUser appUser = appUserRepository.findByEmailIgnoreCase(loginRequest.email().trim()).orElseThrow(() -> new ConflictException("Invalid email or password"));
+
 
     }
 
