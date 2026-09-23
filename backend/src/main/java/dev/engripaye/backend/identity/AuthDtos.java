@@ -23,5 +23,12 @@ public final class AuthDtos {
             String email,
             @NotBlank String password){}
 
+    public record AuthResponse(
+            String accessToken,
+            UserView user,
+            BusinessView business){}
+
+
+
 
 }
