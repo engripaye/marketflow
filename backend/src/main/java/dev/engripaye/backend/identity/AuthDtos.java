@@ -4,6 +4,8 @@ import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Size;
 
+import java.util.UUID;
+
 public final class AuthDtos {
 
     private AuthDtos() {}
@@ -28,7 +30,15 @@ public final class AuthDtos {
             UserView user,
             BusinessView business){}
 
+    public record UserView(
+            UUID id,
+            String fullName,
+            String email){}
 
-
+    public record BusinessView(
+            UUID id,
+            String name,
+            String slug,
+            String currency){}
 
 }
