@@ -43,7 +43,6 @@ public class AuthService {
 
         Business business = membershipRepository.findFirstByUser(appUser).orElseThrow(() -> new ConflictException("No business membership found")).getBusiness();
         return response(appUser, business);
-
     }
 
 
