@@ -14,11 +14,13 @@ public class AuthController {
 
     @PostMapping("/register")
     @ResponseStatus(HttpStatus.CREATED)
-    AuthDtos.AuthResponse register(@Valid @RequestBody AuthDtos.RegisterRequest request){
-        return authService.register(request);
+    AuthDtos.AuthResponse register(@Valid @RequestBody AuthDtos.RegisterRequest registerRequest){
+        return authService.register(registerRequest);
     }
 
-
-
+    @PostMapping("/login")
+    AuthDtos.AuthResponse login(@Valid @RequestBody AuthDtos.LoginRequest loginRequest){
+        return authService.login(loginRequest);
+    }
 
 }
