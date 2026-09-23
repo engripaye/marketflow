@@ -41,6 +41,11 @@ public class AuthService {
 
         if(!passwordEncoder.matches(loginRequest.password(), appUser.getPasswordHash())) throw new ConflictException("Invalid email or password");
 
+        Business business = membershipRepository.findFirstByUser(appUser).orElseThrow(() -> new ConflictException("No business membership found")).getBusiness();
+        return response(appUser, business);
+
     }
+
+
 
 }
