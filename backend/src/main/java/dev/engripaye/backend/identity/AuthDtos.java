@@ -18,6 +18,10 @@ public final class AuthDtos {
             @NotBlank @Size(max=120)
             String businessName){}
 
+    public record LoginRequest(
+            @NotBlank @Email
+            String email,
+            @NotBlank String password){}
 
 
 }
