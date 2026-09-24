@@ -6,6 +6,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.text.Normalizer;
 import java.util.Locale;
 
 @Service
@@ -51,6 +52,11 @@ public class AuthService {
         ));
     }
 
+    private String uniqueSlug(String businessName){
+        String base = Normalizer.normalize(businessName, Normalizer.Form.NFD).replaceAll("\\p{M}","").toLowerCase(Locale.ROOT)
+                .replaceAll("[^a-z0-9]+","-").replaceAll("(^-|-$)","");
+
+    }
 
 
 }
