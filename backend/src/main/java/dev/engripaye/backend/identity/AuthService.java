@@ -45,6 +45,12 @@ public class AuthService {
         return response(appUser, business);
     }
 
+    private AuthDtos.AuthResponse response(AppUser appUser, Business business){
+        return new AuthDtos.AuthResponse(jwtService.issue(appUser), new AuthDtos.UserView(appUser.getId(), appUser.getFullName(), appUser.getEmail()), new AuthDtos.BusinessView(
+                business.getId(), business.getName(), business.getSlug(), business.getCurrency()
+        ));
+    }
+
 
 
 }
