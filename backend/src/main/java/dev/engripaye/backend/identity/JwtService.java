@@ -9,6 +9,7 @@ import javax.crypto.SecretKey;
 import java.nio.charset.StandardCharsets;
 import java.time.Instant;
 import java.util.Date;
+import java.util.UUID;
 
 @Service
 public class JwtService {
@@ -29,7 +30,14 @@ public class JwtService {
 
     public String issue(AppUser appUser) {
         Instant now = Instant.now();
-        return Jwts.builder().subject(appUser.getId().toString().issuedAt(Date.from(now)).expiration(Date.from(now.plusSeconds()))
+        return Jwts.builder().subject(appUser.getId().toString()).issuedAt(Date.from(now)).expiration(Date.from(now.plusSeconds(minutes*60))).signWith(secretKey).compact();
+    }
+
+    public UUID parseSubject(String token) {
+         return UUID.fromString(
+                 Jwts.parser().verifyWith(secretKey).build().parseSignedClaims(token).getPayload().getSubject());
+
+
     }
 
 
