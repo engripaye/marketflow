@@ -1,5 +1,6 @@
 package dev.engripaye.backend.business;
 
+import dev.engripaye.backend.identity.AppUser;
 import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
