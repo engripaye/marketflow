@@ -55,6 +55,14 @@ public class AuthService {
     private String uniqueSlug(String businessName){
         String base = Normalizer.normalize(businessName, Normalizer.Form.NFD).replaceAll("\\p{M}","").toLowerCase(Locale.ROOT)
                 .replaceAll("[^a-z0-9]+","-").replaceAll("(^-|-$)","");
+        if(base.isBlank())base = "business";
+        String candidate = base;
+        int n = 2;
+
+        while (businessRepository.existsBySlug(candidate))
+            candidate = base + "-" + n ++;
+        return candidate;
+
 
     }
 
