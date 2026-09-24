@@ -29,14 +29,16 @@ class JwtAuthenticationFilter extends OncePerRequestFilter {
             ) throws ServletException, IOException{
         String value = request.getHeader(HttpHeaders.AUTHORIZATION);
 
-                if(value != null && value.startsWith("Bearer "))
+                if(value != null && value.startsWith("Bearer ")) {
                     try {
                         UUID id = jwt.parseSubject(value.substring(7));
 
                         var auth = new UsernamePasswordAuthenticationToken(id, null, java.util.List.of());
                         auth.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                         SecurityContextHolder.getContext().setAuthentication(auth);
-                    } catch (JwtException | IllegalArgumentException ignored) {}
+                    } catch (JwtException | IllegalArgumentException ignored) {
+                    }
+                }
                     chain.doFilter(request, response);
                 }
 
