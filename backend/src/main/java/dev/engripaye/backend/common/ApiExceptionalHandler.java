@@ -14,5 +14,10 @@ class ApiExceptionalHandler {
         return problem(HttpStatus.CONFLICT, e.getMessage());
     }
 
+    @ExceptionHandler(ConflictException.class)
+    ProblemDetail conflict(ConflictException e){
+        return problem(HttpStatus.CONFLICT, e.getMessage());
+    }
+
 
 }
