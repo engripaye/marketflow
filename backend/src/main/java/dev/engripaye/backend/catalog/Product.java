@@ -1,8 +1,8 @@
 package dev.engripaye.backend.catalog;
 
+import dev.engripaye.backend.business.Business;
 import dev.engripaye.backend.common.BaseEntity;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AccessLevel;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,5 +12,11 @@ import lombok.NoArgsConstructor;
 @Entity
 @Table( name = "products")
 public class Product extends BaseEntity {
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "business_id", nullable = false)
+    private Business business;
+
+
 
 }
