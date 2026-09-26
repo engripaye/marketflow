@@ -1,9 +1,6 @@
 package dev.engripaye.backend.common;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Id;
-import jakarta.persistence.MappedSuperclass;
-import jakarta.persistence.Version;
+import jakarta.persistence.*;
 import lombok.Getter;
 
 import java.time.Instant;
@@ -22,5 +19,12 @@ public abstract class BaseEntity {
     @Column(nullable = false, updatable = false)
     protected Instant createdAt = Instant.now();
 
+    @Column(nullable = false)
+    protected Instant updatedAt = Instant.now();
+
+    @PreUpdate
+    protected void touch(){
+        updatedAt = Instant.now();
+    }
 
 }
