@@ -46,7 +46,12 @@ public class Product extends BaseEntity {
     }
 
     public void update(String name, String sku, String description, BigDecimal unitPrice, int reorderLevel, boolean active) {
-
+        this.name = name;
+        this.sku = sku;
+        this.description = description;
+        this.unitPrice = unitPrice;
+        this.reorderLevel = reorderLevel;
+        this.active = active;
     }
 
 
