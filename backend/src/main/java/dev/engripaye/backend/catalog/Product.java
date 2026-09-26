@@ -36,7 +36,8 @@ public class Product extends BaseEntity {
     @Column(nullable=false)
     private boolean active=true;
 
-    public Product(String name, String sku, String description, BigDecimal unitPrice, int reorderLevel) {
+    public Product(Business business, String name, String sku, String description, BigDecimal unitPrice, int reorderLevel) {
+        this.business = business;
         this.name = name;
         this.sku = sku;
         this.description = description;
@@ -44,7 +45,9 @@ public class Product extends BaseEntity {
         this.reorderLevel = reorderLevel;
     }
 
-    public void update(String name, String sku, String description, int reorderLevel) {}
+    public void update(String name, String sku, String description, BigDecimal unitPrice, int reorderLevel, boolean active) {
+
+    }
 
 
 }
