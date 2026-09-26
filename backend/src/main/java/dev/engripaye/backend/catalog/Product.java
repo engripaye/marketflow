@@ -25,6 +25,19 @@ public class Product extends BaseEntity {
 
     private String description;
 
+    @Column(name="reorder_level",nullable=false)
+    private int reorderLevel;
+
+    @Column(nullable=false)
+    private boolean active=true;
+
+    public Product(String name, String sku, String description, int reorderLevel) {
+        this.name = name;
+        this.sku = sku;
+        this.description = description;
+        this.reorderLevel = reorderLevel;
+    }
+
 
 
 }
