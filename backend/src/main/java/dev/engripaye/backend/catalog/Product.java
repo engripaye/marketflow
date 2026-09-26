@@ -17,6 +17,14 @@ public class Product extends BaseEntity {
     @JoinColumn(name = "business_id", nullable = false)
     private Business business;
 
+    @Column(nullable = false)
+    private String name;
+
+    @Column(nullable = false)
+    private String sku;
+
+    private String description;
+
 
 
 }
