@@ -7,6 +7,10 @@ import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
+import java.time.Instant;
+import java.util.LinkedHashMap;
+import java.util.Optional;
+
 @RestControllerAdvice
 class ApiExceptionalHandler {
 
@@ -24,8 +28,14 @@ class ApiExceptionalHandler {
     ProblemDetail validation(MethodArgumentNotValidException e) {
         ProblemDetail p = problem(HttpStatus.BAD_REQUEST, "Request validation failed");
         p.setProperties("fields", e.getBindingResult().getFieldErrors().stream().collect(
-                java.util.stream.Collectors.toMap()
-        ));
+                java.util.stream.Collectors.toMap(x -> x.getField(), x-> Optional.ofNullable(x.getDefaultMessage()).orElse("Invalid"), (a, b) -> a, LinkedHashMap::new)));
+        return p;
+    }
+
+    private ProblemDetail problem(HttpStatus status, String message) {
+        ProblemDetail p = ProblemDetail.forStatusAndDetail(status, message);
+        p.setProperty("timestamp", Instant.now());
+        return p;
     }
 
 }
