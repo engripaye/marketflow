@@ -3,6 +3,7 @@ package dev.engripaye.backend.catalog;
 import jakarta.validation.constraints.*;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 public final class ProductDtos {
 
@@ -19,7 +20,14 @@ public final class ProductDtos {
                          @NotNull @DecimalMin("0.00") BigDecimal unitPrice,
                          @Min(0) int reorderLevel,boolean active){}
 
-
+    public record View(UUID id,
+                       String name,
+                       String sku,
+                       String description,
+                       BigDecimal unitPrice,
+                       int reorderLevel,
+                       boolean active,
+                       int quantity){}
 
 }
 
