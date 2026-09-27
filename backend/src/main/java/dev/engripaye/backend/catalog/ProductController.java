@@ -43,4 +43,9 @@ public class ProductController {
         return productService.update(id, request);
     }
 
+    @PostMapping("/{id}/inventory-adjustments")
+    ProductDtos.View adjust(@PathVariable UUID id,
+                            @Valid @RequestBody InventoryDtos.Adjust request){
+        return inventoryService.adjust(id, request);
+    }
 }
