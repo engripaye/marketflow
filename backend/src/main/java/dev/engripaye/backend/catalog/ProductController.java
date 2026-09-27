@@ -8,6 +8,8 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.UUID;
+
 @RestController
 @RequestMapping("/api/v1/products")
 @RequiredArgsConstructor
@@ -30,10 +32,10 @@ public class ProductController {
         return productService.list(q, page);
     }
 
-
-
-
-
+    @GetMapping("/{id}")
+    ProductDtos.View get(@PathVariable UUID id){
+        return productService.get(id);
+    }
 
 
 }
