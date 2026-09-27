@@ -37,5 +37,10 @@ public class ProductController {
         return productService.get(id);
     }
 
+    @PutMapping("/{id}")
+    ProductDtos.View update(@PathVariable UUID id,
+                            @Valid @RequestBody ProductDtos.Update request){
+        return productService.update(id, request);
+    }
 
 }
